@@ -1,0 +1,54 @@
+---
+title: "2026 年度旅遊規劃"
+subtitle: "115年 · 慢遊、美食與文化探索"
+format:
+  html:
+    theme: cosmo
+    toc: false
+    page-layout: full
+    css: styles.css
+---
+
+```{=html}
+<div class="hero-section">
+  <h1>2026 探索之旅</h1>
+  <p>為長輩量身打造的慢活、美食與文化行程。點擊下方卡片查看詳細規劃。</p>
+</div>
+
+<div class="grid-container">
+
+  <!-- 卡片 1：深圳 -->
+  <div class="travel-card">
+    <div class="card-icon">🏙️</div>
+    <h3>深圳</h3>
+    <p>現代都市與海岸線的交織，探索科技之都與創意園區的活力。</p>
+    <span class="status-badge coming-soon">已完成</span>
+  </div>
+
+  <!-- 卡片 2：廈門 -->
+  <div class="travel-card">
+    <div class="card-icon">🌊</div>
+    <h3>廈門</h3>
+    <p>浪漫的鷺島風情，漫步鼓浪嶼的歷史街區，品嚐道地閩南小吃。</p>
+    <span class="status-badge coming-soon">已完成</span>
+  </div>
+
+  <!-- 卡片 3：桂林 -->
+  <div class="travel-card">
+    <div class="card-icon">⛰️</div>
+    <h3>桂林</h3>
+    <p>甲天下的山水畫卷，乘船漫遊灕江，體驗陽朔的慢活步調。</p>
+    <span class="status-badge coming-soon">已完成</span>
+  </div>
+
+  <!-- 卡片 4：廣州 (已連結) -->
+  <div class="travel-card featured">
+    <div class="card-icon">🏮</div>
+    <h3>廣州</h3>
+    <p>千年商都與老城慢調，早茶、大佛古寺與珠江夜遊的完美結合。</p>
+    <!-- 這裡連結到你的廣州行程 HTML -->
+    <a href="11511廣州自由行規劃.html" class="btn-link" target="_blank">查看詳細行程 →</a>
+  </div>
+
+</div>
+```

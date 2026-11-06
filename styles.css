@@ -1,0 +1,100 @@
+/* 主視覺標題區塊 */
+.hero-section {
+  text-align: center;
+  padding: 3rem 1rem;
+  background: linear-gradient(135deg, #f7f5f0 0%, #e8e4db 100%);
+  border-radius: 16px;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.hero-section h1 {
+  font-size: 3rem;
+  color: #2c5f5d; /* 主題色：墨綠 */
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+
+.hero-section p {
+  font-size: 1.2rem;
+  color: #6b6b6b;
+}
+
+/* 卡片網格排版 */
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  padding: 1rem;
+}
+
+/* 單一卡片樣式 */
+.travel-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 2rem;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid #e0dcd3;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.travel-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+}
+
+/* 亮點卡片（廣州） */
+.travel-card.featured {
+  border: 2px solid #c8a96e;
+  background: #fffbf5;
+}
+
+/* 圖示 */
+.card-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.travel-card h3 {
+  color: #2c5f5d;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.travel-card p {
+  color: #6b6b6b;
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+  flex-grow: 1;
+}
+
+/* 按鈕與標籤 */
+.btn-link {
+  display: inline-block;
+  padding: 0.6rem 1.5rem;
+  background-color: #c8a96e;
+  color: white !important;
+  text-decoration: none;
+  border-radius: 20px;
+  font-weight: bold;
+  transition: background-color 0.2s ease;
+}
+
+.btn-link:hover {
+  background-color: #b09050;
+  text-decoration: none;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 0.4rem 1rem;
+  background-color: #e6f2e8;
+  color: #3d7a4a;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: bold;
+}

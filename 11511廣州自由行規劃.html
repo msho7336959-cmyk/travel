@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<style type="text/css">
+.inline {
+  background-color: #f7f7f7;
+  border:solid 1px #B0B0B0;
+}
+.error {
+	font-weight: bold;
+	color: #FF0000;
+}
+.warning {
+	font-weight: bold;
+}
+.message {
+	font-style: italic;
+}
+.source, .output, .warning, .error, .message {
+	padding: 0 1em;
+  border:solid 1px #F7F7F7;
+}
+.source {
+  background-color: #f5f5f5;
+}
+.left {
+  text-align: left;
+}
+.right {
+  text-align: right;
+}
+.center {
+  text-align: center;
+}
+.hl.num {
+  color: #AF0F91;
+}
+.hl.sng {
+  color: #317ECC;
+}
+.hl.com {
+  color: #AD95AF;
+  font-style: italic;
+}
+.hl.opt {
+  color: #000000;
+}
+.hl.def {
+  color: #585858;
+}
+.hl.kwa {
+  color: #295F94;
+  font-weight: bold;
+}
+.hl.kwb {
+  color: #B05A65;
+}
+.hl.kwc {
+  color: #55aa55;
+}
+.hl.kwd {
+  color: #BC5A65;
+  font-weight: bold;
+}
+</style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>廣州7天6夜長輩慢遊行程表（格芮酒店版）</title>
+<style>
+  :root {
+    --primary: #2c5f5d;
+    --accent: #c8a96e;
+    --bg: #f7f5f0;
+    --card: #ffffff;
+    --text: #2b2b2b;
+    --muted: #6b6b6b;
+    --border: #e0dcd3;
+    --green: #3d7a4a;
+    --orange: #b86a2b;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang TC", "Microsoft JhengHei", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    padding: 16px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  header {
+    background: var(--primary);
+    color: #fff;
+    padding: 24px 20px;
+    border-radius: 16px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  header h1 { font-size: 1.5rem; letter-spacing: 1px; margin-bottom: 8px; }
+  header p { font-size: 0.95rem; opacity: 0.9; }
+  .info-bar {
+    display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;
+    margin-top: 12px; font-size: 0.85rem;
+  }
+  .info-bar span, .info-bar a {
+    background: rgba(255,255,255,0.15);
+    padding: 4px 12px; border-radius: 20px;
+    color: #fff; text-decoration: none;
+  }
+  .info-bar a:hover { background: rgba(255,255,255,0.3); }
+  
+  h2 {
+    font-size: 1.15rem;
+    color: var(--primary);
+    margin: 28px 0 12px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--accent);
+  }
+  
+  /* 圖片區塊 */
+  .photo-showcase {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .photo-showcase .photo-card {
+    background: var(--card);
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  }
+  .photo-showcase .photo-card img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .photo-showcase .photo-card .caption {
+    padding: 10px 16px;
+    font-size: 0.85rem;
+    color: var(--muted);
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .photo-showcase .photo-card .caption strong { color: var(--primary); }
+  .photo-showcase .photo-card .caption a {
+    color: #fff; background: var(--accent); padding: 4px 10px; 
+    border-radius: 6px; text-decoration: none; font-size: 0.8rem; font-weight: bold;
+  }
+
+  .overview-table {
+    width: 100%; border-collapse: collapse; background: var(--card);
+    border-radius: 12px; overflow: hidden; font-size: 0.85rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .overview-table th {
+    background: var(--primary); color: #fff; padding: 10px 8px; font-weight: 600;
+  }
+  .overview-table td {
+    padding: 10px 8px; border-bottom: 1px solid var(--border); vertical-align: top;
+  }
+  .overview-table tr:last-child td { border-bottom: none; }
+  .overview-table tr:nth-child(even) { background: #faf8f4; }
+  .day-card {
+    background: var(--card); border-radius: 14px; padding: 20px;
+    margin-bottom: 16px; box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    border-left: 5px solid var(--accent);
+  }
+  .day-card h3 {
+    font-size: 1.1rem; color: var(--primary); margin-bottom: 4px;
+    display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  }
+  .day-card .date { font-size: 0.85rem; color: var(--muted); font-weight: normal; }
+  .tag {
+    display: inline-block; font-size: 0.75rem; padding: 2px 10px;
+    border-radius: 20px; font-weight: 600; margin-left: 4px;
+  }
+  .tag-low { background: #e6f2e8; color: var(--green); }
+  .tag-mid { background: #fdf0e6; color: var(--orange); }
+  .tag-rest { background: #e8edf5; color: #3a5a8a; }
+  .timeline { list-style: none; margin-top: 14px; }
+  .timeline li {
+    position: relative; padding-left: 22px; margin-bottom: 12px;
+  }
+  .timeline li::before {
+    content: ""; position: absolute; left: 4px; top: 9px;
+    width: 8px; height: 8px; border-radius: 50%; background: var(--accent);
+  }
+  .timeline li::after {
+    content: ""; position: absolute; left: 7.5px; top: 20px;
+    width: 1px; height: calc(100% - 8px); background: var(--border);
+  }
+  .timeline li:last-child::after { display: none; }
+  .time {
+    display: inline-block; font-weight: 700; color: var(--primary);
+    font-size: 0.9rem; min-width: 60px;
+  }
+  .highlight { background: #fff8e8; border-left: 3px solid var(--accent); padding: 12px 14px; border-radius: 8px; margin: 12px 0; font-size: 0.9rem; }
+  .highlight strong { color: var(--primary); }
+  .weather-table { width: 100%; border-collapse: collapse; background: var(--card); border-radius: 10px; overflow: hidden; font-size: 0.85rem; }
+  .weather-table th { background: #5a7a8a; color: #fff; padding: 10px 8px; }
+  .weather-table td { padding: 10px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  .weather-table tr:last-child td { border-bottom: none; }
+  .checklist { background: var(--card); border-radius: 14px; padding: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.06); }
+  .checklist ul { list-style: none; margin-top: 8px; }
+  .checklist li { padding: 6px 0 6px 26px; position: relative; font-size: 0.92rem; border-bottom: 1px dashed var(--border); }
+  .checklist li:last-child { border-bottom: none; }
+  .checklist li::before {
+    content: "✔"; position: absolute; left: 0; color: var(--green); font-weight: bold;
+  }
+  .food-list { display: flex; flex-direction: column; gap: 8px; margin-top: 10px; }
+  .food-item { background: #faf8f4; border-radius: 8px; padding: 10px 14px; font-size: 0.9rem; }
+  .food-item strong { color: var(--primary); }
+  footer { text-align: center; color: var(--muted); font-size: 0.8rem; margin: 30px 0 10px; }
+  @media (max-width: 600px) {
+    body { padding: 10px; }
+    header h1 { font-size: 1.25rem; }
+    .overview-table { font-size: 0.75rem; }
+    .overview-table th, .overview-table td { padding: 7px 5px; }
+    .day-card { padding: 15px; }
+    .time { min-width: 48px; font-size: 0.82rem; }
+  }
+  @media print {
+    body { background: #fff; padding: 0; }
+    header { background: var(--primary) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .day-card, .checklist, .overview-table { box-shadow: none; border: 1px solid var(--border); }
+    .day-card { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>廣州7天6夜「長輩慢遊·美食購物」</h1>
+  <p>11/18（三）— 11/24（二）｜1對夫妻 · 63歲以上 · 1位需拄杖慢走</p>
+  <div class="info-bar">
+    <!-- 加入酒店專屬連結 -->
+    <a href="https://hk.trip.com/hotels/w/detail/?cityid=32&hotelid=133686859&checkin=2026-11-18&checkout=2026-11-24&curr=TWD&locale=zh-HK&fromShare=TripPcDetail&linkhub_token=sl_oeaAJ0u83X2" target="_blank" rel="noopener">🏨 中華廣場格芮酒店（點擊看詳情）</a>
+    <span>🍳 早餐已訂酒店餐廳</span>
+  </div>
+</header>
+
+<!-- ===== 圖片展示區（放在最前） ===== -->
+<h2>📸 機票+住宿 · 酒店房型 · 大佛寺</h2>
+
+<div class="photo-showcase">
+  <div class="photo-card">
+    <img src="price.jpg" alt="Trip.com 機+酒價格詳情">
+    <div class="caption">
+      <span><strong>💰 機票+住宿預估價格</strong>｜TWD 57,750（2位成人）</span>
+    </div>
+  </div>
+  <div class="photo-card">
+    <img src="room.jpg" alt="格芮酒店行政城景雙床房">
+    <div class="caption">
+      <span><strong>🛏️ 格芮酒店·行政城景雙床房</strong>｜38-42平米</span>
+      <a href="https://hk.trip.com/hotels/w/detail/?cityid=32&hotelid=133686859&checkin=2026-11-18&checkout=2026-11-24&curr=TWD&locale=zh-HK&fromShare=TripPcDetail&linkhub_token=sl_oeaAJ0u83X2" target="_blank" rel="noopener">查看飯店</a>
+    </div>
+  </div>
+  <div class="photo-card">
+    <img src="dafo.jpg" alt="大佛古寺夜景">
+    <div class="caption">
+      <span><strong>🛕 大佛古寺夜景</strong>｜北京路商圈中的千年古剎</span>
+    </div>
+  </div>
+</div>
+
+<div class="highlight">
+  <strong>⚠️ 住宿變更提示：</strong>新酒店位於中山三路中華國際中心，地鐵1號線烈士陵園站步行約5分鐘。最大優勢是<strong>大佛古寺和北京路就在旁邊</strong>，Day 2 打車起步價或慢走即可。酒店樓下就是中華廣場商場，吃飯購物方便。原龍津東路早市環節取消，Day 2 上午直接去大佛寺。
+</div>
+
+<h2>📌 每日行程速覽</h2>
+<table class="overview-table">
+  <thead>
+    <tr><th>日期</th><th>上午</th><th>下午</th><th>晚上</th><th>強度</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>Day 1</strong><br>11/18 三</td><td>抵達廣州，打車直達酒店</td><td>入住休息，樓下商場慢走</td><td>酒店附近吃雲吞麵，早休息</td><td>⭐ 極低</td></tr>
+    <tr><td><strong>Day 2</strong><br>11/19 四</td><td><strong>大佛古寺</strong>（有電梯，近酒店）</td><td>回酒店午休，周邊自由活動</td><td>北京路看夜景、吃粵菜</td><td>⭐⭐ 低</td></tr>
+    <tr><td><strong>Day 3</strong><br>11/20 五</td><td><strong>天河商圈</strong>（烈士陵園站直達）</td><td>花城廣場北段坐坐</td><td><strong>珠江夜遊</strong>（沙發艙）</td><td>⭐⭐⭐ 中</td></tr>
+    <tr><td><strong>Day 4</strong><br>11/21 六</td><td><strong>泮溪酒家</strong>園林早茶</td><td>午休後逛永慶坊、粵劇博物館</td><td>吃豬肚雞，看月亮橋</td><td>⭐⭐ 低</td></tr>
+    <tr><td><strong>Day 5</strong><br>11/22 日</td><td><strong>沙面島</strong>慢走（北街一段）</td><td>回酒店午餐，<strong>下午完全留白</strong></td><td>附近吃舒服粵菜</td><td>⭐ 極低</td></tr>
+    <tr><td><strong>Day 6</strong><br>11/23 一</td><td>街坊茶樓飲茶（酒店周邊找）</td><td><strong>沃爾瑪超市</strong>（芳村店）</td><td>附近吃飯，收拾行李</td><td>⭐⭐ 低</td></tr>
+    <tr><td><strong>Day 7</strong><br>11/24 二</td><td>酒店早餐，慢慢收拾</td><td>提前2.5-3小時打車去機場</td><td>平安返程</td><td>⭐ 極低</td></tr>
+  </tbody>
+</table>
+
+<h2>📅 每日詳細安排</h2>
+
+<div class="day-card">
+  <h3>Day 1 · 抵達 · 入住 · 周邊緩衝 <span class="date">11/18（三）</span><span class="tag tag-rest">輕鬆</span></h3>
+  <ul class="timeline">
+    <li><span class="time">下午</span> 白雲機場打車直達酒店（約35分鐘），<strong>直接打車，不折騰地鐵</strong>。入住後讓長輩平躺休息至少1小時。</li>
+    <li><span class="time">傍晚</span> 樓下就是中華廣場商場，如果長輩有精力，在商場內慢走熟悉環境，找家餐廳吃晚餐。累了直接在酒店附近解決。</li>
+    <li><span class="time">提醒</span> 提前致電酒店確認<strong>低樓層或電梯直達</strong>房間、浴室有防滑墊。你們訂的行政城景雙床房面積38-42平方米，空間對兩位長輩來說足夠寬敞。</li>
+  </ul>
+</div>
+
+<div class="day-card">
+  <h3>Day 2 · 大佛古寺 · 午休 · 北京路夜景 <span class="date">11/19（四）</span><span class="tag tag-low">低強度</span></h3>
+  <ul class="timeline">
+    <li><span class="time">08:00</span> 酒店早餐（七分飽）。</li>
+    <li><span class="time">09:00-10:30</span> <strong>大佛古寺</strong>：從新酒店過去很近，建議<strong>打車（起步價）或慢走</strong>。免費、免預約，<strong>弘法大樓有電梯</strong>。白天人少安靜，進殿拜拜、坐一坐，1小時足夠。</li>
+    <li><span class="time">10:30-11:00</span> 周邊茶飲店坐15分鐘，<strong>不進北京路主街</strong>。</li>
+    <li><span class="time">11:00</span> 打車回酒店，午餐後午休。</li>
+    <li><span class="time">晚上</span> 打車或慢走去北京路，<strong>只看大佛寺外觀夜景</strong>（白天已入內，晚上拍照即可），吃粵菜。</li>
+  </ul>
+</div>
+
+<div class="day-card">
+  <h3>Day 3 · 天河商圈 · 花城廣場 · 珠江夜遊 <span class="date">11/20（五）</span><span class="tag tag-mid">中等強度</span></h3>
+  <ul class="timeline">
+    <li><span class="time">上午</span> <strong>地鐵1號線烈士陵園站直達體育西路站</strong>，不用換乘。只逛正佳廣場或天河城其中一個，商場冷氣足、有按摩椅。</li>
+    <li><span class="time">午餐</span> 商場內解決，不為找小店走遠路。</li>
+    <li><span class="time">下午</span> 花城廣場<strong>只在北段找長椅坐下</strong>，遠眺廣州塔拍照，<strong>不要步行去小蠻腰</strong>。</li>
+    <li><span class="time">晚上</span> 珠江夜遊，選天字碼頭或大沙頭碼頭，買<strong>豪華船艙坐沙發椅</strong>。下船直接打車回酒店。</li>
+  </ul>
+</div>
+
+<div class="day-card">
+  <h3>Day 4 · 園林早茶 · 永慶坊 · 粵劇博物館 <span class="date">11/21（六）</span><span class="tag tag-low">低強度</span></h3>
+  <ul class="timeline">
+    <li><span class="time">08:00</span> 酒店早餐（<strong>刻意少吃</strong>，留肚子給早茶）。</li>
+    <li><span class="time">09:00-10:30</span> <strong>泮溪酒家早茶體驗</strong>：打車去荔灣湖畔。2人點一壺普洱、兩籠點心，<strong>坐著感受園林氛圍</strong>。</li>
+    <li><span class="time">10:30-11:00</span> 荔枝灣涌慢走5-10分鐘看水景。</li>
+    <li><span class="time">11:30</span> 午餐後回酒店午休。</li>
+    <li><span class="time">下午</span> 打車去永慶坊/恩寧路，<strong>只走主街一段</strong>。粵劇藝術博物館全平地有座椅，<strong>需提前微信小程序預約</strong>。</li>
+    <li><span class="time">晚上</span> 酒店附近吃豬肚雞，飯後看月亮橋，打車回酒店。</li>
+  </ul>
+</div>
+
+<div class="day-card">
+  <h3>Day 5 · 沙面島半日 · 回酒店午餐 · 午休留白 <span class="date">11/22（日）</span><span class="tag tag-rest">緩衝日</span></h3>
+  <ul class="timeline">
+    <li><span class="time">08:00</span> 酒店早餐。</li>
+    <li><span class="time">09:30-11:00</span> <strong>沙面島</strong>：打車約15-20分鐘。全島步行區、長椅多，<strong>只走北街靠珠江一段</strong>，看歐式建築、星巴克坐坐，不繞全島。</li>
+    <li><span class="time">11:00</span> <strong>直接打車回酒店</strong>，在酒店附近或中華廣場商場內吃午餐。</li>
+    <li><span class="time">下午</span> <strong>完全留白</strong>，回房間平躺午休，睡到自然醒。這是全程唯一完整緩衝日。</li>
+    <li><span class="time">晚上</span> 酒店附近吃舒服粵菜，早點休息。</li>
+  </ul>
+</div>
+
+<div class="day-card">
+  <h3>Day 6 · 街坊飲茶 · 沃爾瑪採購 <span class="date">11/23（一）</span><span class="tag tag-low">低強度</span></h3>
+  <ul class="timeline">
+    <li><span class="time">08:00</span> 酒店早餐（七分飽）。</li>
+    <li><span class="time">09:00-10:30</span> <strong>街坊茶樓飲茶</strong>：不去點都德/陶陶居排隊，在酒店周邊巷子裡找<strong>不用排隊的社區茶樓</strong>，或讓酒店前台推薦。</li>
+    <li><span class="time">下午</span> 打車去<strong>沃爾瑪（芳村店）</strong>（荔灣區花地大道北93-103號花地城廣場B1層，車程約20分鐘）。2人慢慢逛超市採購。</li>
+    <li><span class="time">晚上</span> 酒店附近或商場內吃飯，早休息。</li>
+  </ul>
+</div>
+
+<div class="day-card">
+  <h3>Day 7 · 返程 <span class="date">11/24（二）</span><span class="tag tag-rest">輕鬆</span></h3>
+  <ul class="timeline">
+    <li><span class="time">上午</span> 酒店早餐，慢慢收拾行李。</li>
+    <li><span class="time">下午</span> 提前2.5-3小時打車去白雲機場。<strong>退房時讓酒店幫忙叫車</strong>，避免路邊招手。</li>
+  </ul>
+</div>
+
+<h2>🌦️ 天氣備案（下雨就啟動）</h2>
+<table class="weather-table">
+  <thead><tr><th>如果這天下雨</th><th>備案做法</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Day 2（11/19）上午</strong></td><td>大佛寺有室內殿堂，小雨不影響。大雨則改在酒店樓下中華廣場商場內慢坐，下午雨停再去。</td></tr>
+    <tr><td><strong>Day 3（11/20）下午</strong></td><td>取消花城廣場，在商場多坐，直接打車去碼頭。</td></tr>
+    <tr><td><strong>Day 4（11/21）下午</strong></td><td>粵劇博物館只逛室內展廳，永慶坊大雨則跳過。</td></tr>
+    <tr><td><strong>Day 5（11/22）上午</strong></td><td>放棄沙面島，改在酒店樓下商場或打車去天河城室內坐一上午，午餐後午休。</td></tr>
+  </tbody>
+</table>
+
+<h2>🎒 必帶物品與提醒</h2>
+<div class="checklist">
+  <ul>
+    <li><strong>證件</strong>：台胞證、<strong>實體身份證</strong>（65歲以上景點多免票）</li>
+    <li><strong>APP</strong>：微信/支付寶綁台灣信用卡，方便掃碼付費與叫車</li>
+    <li><strong>穿鞋</strong>：<strong>防滑氣墊運動鞋</strong>（老城區騎樓地面雨後濕滑）</li>
+    <li><strong>穿衣</strong>：薄防風外套+短袖內搭，洋蔥式穿法；備薄圍巾。11月下旬可能有冷空氣和秋雨，早晚偏涼。</li>
+    <li><strong>神器</strong>：<strong>折疊小板凳</strong>（排隊、等車隨時能坐）、折疊傘兩把</li>
+    <li><strong>藥品</strong>：常用藥、止痛貼布（走路多時備用）</li>
+    <li><strong>心態</strong>：<strong>放棄打卡</strong>，一天一個主力行程+一頓好飯就是滿分。累了就砍行程回酒店，不心疼。</li>
+  </ul>
+</div>
+
+<h2>🍽️ 飲食重點（新酒店周邊）</h2>
+<div class="food-list">
+  <div class="food-item"><strong>酒店樓下</strong>：中華廣場商場內有餐廳，不想走遠時直接樓下解決</div>
+  <div class="food-item"><strong>北京路步行圈</strong>（步行10分鐘內）：銀記腸粉、陳添記魚皮、陶陶居、點都德</div>
+  <div class="food-item"><strong>早茶</strong>：泮溪酒家（園林環境，Day 4）、酒店周邊社區茶樓（不排隊，Day 6）</div>
+  <div class="food-item"><strong>超市採購</strong>：沃爾瑪芳村店（Day 6下午）</div>
+</div>
+
+<div class="highlight">
+  <strong>💡 核心原則：</strong>每天一個主力行程，午後一定回酒店休息，下雨就啟動備案，累了就砍行程。不淋雨、不滑倒、不疲勞，比多逛一個景點重要得多。
+</div>
+
+<footer>祝你們廣州之行順利愉快！</footer>
+
+</body>
+</html>
